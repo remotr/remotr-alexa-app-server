@@ -10,7 +10,7 @@ AlexaAppServer.start({
     // process. Provied by alexa-verifier
     verify: false,
 		httpsEnabled : false,
-		server_root:__dirname/examples,     // Path to root
+		server_root:__dirname,     // Path to root
     public_html:"public_html", // Static content
 //    app_dir:"apps",            // Where alexa-app modules are stored
     app_root:"/alexa/",        // Service root

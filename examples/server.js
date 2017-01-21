@@ -1,8 +1,8 @@
 var AlexaAppServer = require("../index.js");
 AlexaAppServer.start({
 		//port:8080,
-		app_dir: "./examples/apps",
-		server_dir : "./examples/server",
+		app_dir: "apps",
+		server_dir : "server",
 		debug : true,
     // By default, some information is logged with console.log(), which can be disabled
     log : true,

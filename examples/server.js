@@ -1,6 +1,6 @@
 var AlexaAppServer = require("../index.js");
 AlexaAppServer.start({
-		port:80,
+		port:8080,
 		app_dir: "./examples/apps",
 		server_dir : "./examples/server",
 		debug : true,

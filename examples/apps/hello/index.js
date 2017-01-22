@@ -1,6 +1,6 @@
-// var alexa = require('alexa-app');
-var chatskills = require('chatskills');
-var readlineSync = require('readline-sync');
+var alexa = require('alexa-app');
+//var chatskills = require('chatskills');
+//var readlineSync = require('readline-sync');
 
 
 // Create a skill.
@@ -28,16 +28,16 @@ hello.intent('hello', {
 
 module.exports = hello;
 
-// Console client.
-var text = ' ';
-while (text.length > 0 && text != 'quit') {
-  //console.log('hello');
-  text = readlineSync.question('> ');
-// “chatskills, ask hello to say hi.”
-// chatskills, ask say hi.
-
-  // Respond to input.
-  chatskills.respond(text, function(response) {
-    console.log(response);
-  });
-}
+// // Console client.
+// var text = ' ';
+// while (text.length > 0 && text != 'quit') {
+//   //console.log('hello');
+//   text = readlineSync.question('> ');
+// // “chatskills, ask hello to say hi.”
+// // chatskills, ask say hi.
+//
+//   // Respond to input.
+//   chatskills.respond(text, function(response) {
+//     console.log(response);
+//   });
+// }

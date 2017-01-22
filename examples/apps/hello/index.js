@@ -4,8 +4,8 @@ var alexa = require('alexa-app');
 
 
 // Create a skill.
-// var hello = new alexa.app('hello');
-var hello = chatskills.app('hello');
+var hello = new alexa.app('hello');
+// var hello = chatskills.app('hello');
 
 // Launch method to run at startup.
 hello.launch(function(req,res) {

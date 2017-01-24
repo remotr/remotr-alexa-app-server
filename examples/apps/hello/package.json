@@ -6,7 +6,10 @@
     "alexa-app": "*",
     "chatskills": "*",
     "deasync": "*",
+    "http": "0.0.0",
     "readline-sync": "*",
     "request": "*",
-    "xml2js": "*"  }
+    "util": "^0.10.3",
+    "xml2js": "*"
+  }
 }

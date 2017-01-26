@@ -88,7 +88,7 @@ function getResponseFromRemoteService(cb) {
 
     if (is_production) {
       console.log('Running in PROD - change config for prod');
-      var host = 'remotr-alexa-app-server.herokuapp.com';
+      var host = 'remotr-alexa-app-server.herokuapp.com/alexa/hello';
       var port = '443';
     }
     else {

@@ -12,12 +12,12 @@ var is_production = process.env.production === 'true'
 // var hello = new alexa.app('hello');
 var hello = chatskills.app('hello');
 
-console.log('Calling service');
+// console.log('Calling service');
 getResponseFromRemoteService( function (resp) {
   //console.log(require("util").inspect(data,false, 3)); // 3 niveauer
   //console.log(require("util").inspect(data,false, null)); // vis alle underobjekter
-    console.log('service returned with some json: ', resp);
-    console.log(require("util").inspect(resp,false, null)); // vis alle underobjekter
+    // console.log('service returned with some json: ', resp);
+    // console.log(require("util").inspect(resp,false, null)); // vis alle underobjekter
 });
 
 // Launch method to run at startup.
@@ -67,19 +67,19 @@ function callService2() {
   };
 
   http.get(options, function(res) {
-    console.log("Got response: " + res.statusCode);
+    // console.log("Got response: " + res.statusCode);
 
     res.on("data", function(chunk) {
-      console.log("BODY: " + chunk);
+      // console.log("BODY: " + chunk);
     });
   }).on('error', function(e) {
-    console.log("Got error: " + e.message);
+    // console.log("Got error: " + e.message);
   });
 }
 
 function getResponseFromRemoteService(cb) {
 
-    console.log('Starting getResponseFromRemoteService()');
+    // console.log('Starting getResponseFromRemoteService()');
 
 
     var host = 'localhost';
@@ -87,12 +87,12 @@ function getResponseFromRemoteService(cb) {
     var path = '/service';
 
     if (is_production) {
-      console.log('Running in PROD - change config for prod');
+      // console.log('Running in PROD - change config for prod');
       var host = 'remotr-alexa-app-server.herokuapp.com/alexa/hello';
       var port = '443';
     }
     else {
-      console.log('Running in DEV');
+      // console.log('Running in DEV');
     }
     http.get({
         host: host,
@@ -101,7 +101,7 @@ function getResponseFromRemoteService(cb) {
         // port: config.port,
         // path: config.path
     }, function(res) {
-        console.log('got response');
+        // console.log('got response');
         //console.log('response', res);
         // explicitly treat incoming data as utf8 (avoids issues with multi-byte chars)
         res.setEncoding('utf8');
@@ -109,17 +109,17 @@ function getResponseFromRemoteService(cb) {
         // incrementally capture the incoming response body
         var body = '';
         res.on('data', function(d) {
-          console.log('got some data');
+          // console.log('got some data');
             body += d;
         });
 
         // do whatever we want with the response once it's done
         res.on('end', function() {
             try {
-                console.log('got a response from the service');
+                // console.log('got a response from the service');
                 var parsed = JSON.parse(body);
             } catch (err) {
-                console.error('Unable to parse response as JSON', err);
+                // console.error('Unable to parse response as JSON', err);
                 return cb(err);
             }
             //pass the relevant data back to the callback
@@ -127,12 +127,12 @@ function getResponseFromRemoteService(cb) {
             //     menu_title: parsed.menu.value
             //     //password: parsed.pass
             // });
-            console.log('serviceResponse: ', parsed.response);
+            // console.log('serviceResponse: ', parsed.response);
             cb(parsed.response);
         });
     }).on('error', function(err) {
         // handle errors with the request itself
-        console.error('Error with the request:', err.message);
+        // console.error('Error with the request:', err.message);
         cb(err);
     });
 

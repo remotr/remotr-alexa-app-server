@@ -3,6 +3,9 @@ var chatskills = require('chatskills');
 var readlineSync = require('readline-sync');
 var http = require('http');
 
+
+var is_production = process.env.production === 'true'
+
 // chatskills, ask hello to say hi
 
 // Create a skill.
@@ -14,7 +17,7 @@ getResponseFromRemoteService( function (resp) {
   //console.log(require("util").inspect(data,false, 3)); // 3 niveauer
   //console.log(require("util").inspect(data,false, null)); // vis alle underobjekter
     console.log('service returned with some json: ', resp);
-    console.log(require("util").inspect(data,false, null)); // vis alle underobjekter
+    console.log(require("util").inspect(resp,false, null)); // vis alle underobjekter
 });
 
 // Launch method to run at startup.
@@ -77,10 +80,26 @@ function callService2() {
 function getResponseFromRemoteService(cb) {
 
     console.log('Starting getResponseFromRemoteService()');
+
+
+    var host = 'localhost';
+    var port = '5000';
+    var path = '/service';
+
+    if (is_production) {
+      console.log('Running in PROD - change config for prod');
+      var host = 'remotr-alexa-app-server.herokuapp.com';
+      var port = '443';
+    }
+    else {
+      console.log('Running in DEV');
+    }
     http.get({
-        host: 'localhost',
-        port: '3005',
-        path: '/menu.json'
+        host: host,
+        port: port,
+        path: path
+        // port: config.port,
+        // path: config.path
     }, function(res) {
         console.log('got response');
         //console.log('response', res);
@@ -103,21 +122,18 @@ function getResponseFromRemoteService(cb) {
                 console.error('Unable to parse response as JSON', err);
                 return cb(err);
             }
-
-            console.log('no errors');
             //pass the relevant data back to the callback
             // cb(null, {
             //     menu_title: parsed.menu.value
             //     //password: parsed.pass
             // });
-
-            console.log('menu_title: ', parsed.menu.value);
-            cb(parsed);
+            console.log('serviceResponse: ', parsed.response);
+            cb(parsed.response);
         });
     }).on('error', function(err) {
         // handle errors with the request itself
         console.error('Error with the request:', err.message);
-        //cb(err);
+        cb(err);
     });
 
 }

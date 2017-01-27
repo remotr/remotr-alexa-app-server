@@ -81,6 +81,12 @@ function getResponseFromRemoteService(cb) {
 
     // console.log('Starting getResponseFromRemoteService()');
 
+    var options = {
+      host: 'openshift.redhat.com',
+      port: 443,
+      path: '/broker/rest/api',
+      method: 'GET'
+    };
 
     var host = 'localhost';
     var port = '5000';
@@ -89,7 +95,7 @@ function getResponseFromRemoteService(cb) {
     if (is_production) {
       console.log('Running in PROD - change config for prod');
       console.log('Call service from here');
-      var host = 'remotr-alexa-app-server.herokuapp.com/alexa/hello';
+      var host = 'remotr-service.herokuapp.com/service';
       var port = '443';
     }
     else {

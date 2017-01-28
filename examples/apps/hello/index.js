@@ -13,12 +13,12 @@ var hello = new alexa.app('hello');
 // var hello = chatskills.app('hello');
 
 // console.log('Calling service');
-getResponseFromRemoteService( function (resp) {
-  //console.log(require("util").inspect(data,false, 3)); // 3 niveauer
-  //console.log(require("util").inspect(data,false, null)); // vis alle underobjekter
-    // console.log('service returned with some json: ', resp);
-    // console.log(require("util").inspect(resp,false, null)); // vis alle underobjekter
-});
+// getResponseFromRemoteService( function (resp) {
+//   //console.log(require("util").inspect(data,false, 3)); // 3 niveauer
+//   //console.log(require("util").inspect(data,false, null)); // vis alle underobjekter
+//     // console.log('service returned with some json: ', resp);
+//     // console.log(require("util").inspect(resp,false, null)); // vis alle underobjekter
+// });
 
 // Launch method to run at startup.
 hello.launch(function(req,res) {
@@ -35,11 +35,12 @@ hello.intent('hello', {
     },
     function(req, res) {
       // var serviceResponse = getResponseFromRemoteService();
-        res.say('Calling the response service');
-        getResponseFromRemoteService( function(response){
-          res.say(response);
-        });
+        // res.say('Calling the response service');
+        //   getResponseFromRemoteService( function(response){
+        //   res.say(response);
+        // });
         //res.say('Response from service is here!');
+        res.say('Hello World!');
         //res.say(serviceResponse);
         res.shouldEndSession(false);
     }

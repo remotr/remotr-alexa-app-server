@@ -6,8 +6,8 @@ var readlineSync = require('readline-sync');
 module.change_code = 1;
 
 // Define an alexa-app
-// var app = new alexa.app('helloworld');
-var app = chatskills.app('helloworld');
+var app = new alexa.app('helloworld');
+//var app = chatskills.app('helloworld');
 
 app.launch(function(req,res) {
 	res.say("Hello World!!");

@@ -1,5 +1,5 @@
-//var alexa = require('alexa-app');
-var chatskills = require('chatskills');
+var alexa = require('alexa-app');
+// var chatskills = require('chatskills');
 var readlineSync = require('readline-sync');
 var xml2js = require('xml2js').parseString;
 var request = require('request');

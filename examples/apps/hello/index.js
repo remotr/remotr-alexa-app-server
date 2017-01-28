@@ -1,5 +1,5 @@
-// var alexa = require('alexa-app');
-var chatskills = require('chatskills');
+var alexa = require('alexa-app');
+// var chatskills = require('chatskills');
 var readlineSync = require('readline-sync');
 var http = require('http');
 
@@ -9,8 +9,8 @@ var is_production = process.env.production === 'true'
 // chatskills, ask hello to say hi
 
 // Create a skill.
-// var hello = new alexa.app('hello');
-var hello = chatskills.app('hello');
+var hello = new alexa.app('hello');
+// var hello = chatskills.app('hello');
 
 // console.log('Calling service');
 getResponseFromRemoteService( function (resp) {
@@ -35,9 +35,12 @@ hello.intent('hello', {
     },
     function(req, res) {
       // var serviceResponse = getResponseFromRemoteService();
-        var serviceResponse = callService2();
-        res.say('Response from service is here!');
-        res.say(serviceResponse);
+        res.say('Calling the response service');
+        getResponseFromRemoteService( function(response){
+          res.say(response);
+        });
+        //res.say('Response from service is here!');
+        //res.say(serviceResponse);
         res.shouldEndSession(false);
     }
 );
@@ -81,6 +84,7 @@ function getResponseFromRemoteService(cb) {
 
     // console.log('Starting getResponseFromRemoteService()');
 
+    // Options not used yet
     var options = {
       host: 'openshift.redhat.com',
       port: 443,
@@ -123,10 +127,10 @@ function getResponseFromRemoteService(cb) {
         // do whatever we want with the response once it's done
         res.on('end', function() {
             try {
-                // console.log('got a response from the service');
+                console.log('got a response from the service');
                 var parsed = JSON.parse(body);
             } catch (err) {
-                // console.error('Unable to parse response as JSON', err);
+                console.error('Unable to parse response as JSON', err);
                 return cb(err);
             }
             //pass the relevant data back to the callback
@@ -134,7 +138,7 @@ function getResponseFromRemoteService(cb) {
             //     menu_title: parsed.menu.value
             //     //password: parsed.pass
             // });
-            // console.log('serviceResponse: ', parsed.response);
+            console.log('serviceResponse: ', parsed.response);
             cb(parsed.response);
         });
     }).on('error', function(err) {
